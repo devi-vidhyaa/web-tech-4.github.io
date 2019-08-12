@@ -5,19 +5,85 @@
   input[type=text],input[type=password]
   {
     padding: 12px 20px;
-    margin: 8px 10px;
     box-sizing: border-box;
+	border-radius: 5px;
+  }
+  button{
+	background-color: #1e90ff;
+	border-radius: 5px;
+	width: 100px;
+	height: 50px;
+	color: white;
+  }
+  label{
+  	  font-family: sans-serif;
+	  font-weight: bold;
+  }
+  form{
+  	  width: 600px;
+      margin: 175px 500px;
   }
 </style>
 </head>
 <body>
-<form>
+<form name = "form1">
 <h1>Create your account</h1>
 <label>Username</label>
-<input type = "text" placeholder = "myusername"><br>
+<input type = "text" placeholder = "myusername" style = "margin: 10px 13px;"><br>
 <label>Password</label>
-<input type = "password" placeholder = "mypassword"><br>
-<button>Validate</button>
-<button>Get Location</button>
+<input type = "password" id = "password1" placeholder = "mypassword" style = "margin: 10px 15px;"><br><br>
+<div id = "valid"></div>
+<button id = "validate" onClick = "validation()" style = "margin-left: 100px;">Validate</button>
+<button id = "location" onClick = getLocation() style = "margin-left: 40%;">Get Location</button>
+<script>
+function validation(){
+  var x = document.getElementById(password1);
+  var y = document.getElementById(valid);
+  var lowerCaseLetters = /[a-z]/g;
+  console.log(x.value.match(lowerCaseLetters))
+  if(x.value.match(lowerCaseLetters)) {
+    continue;
+  } 
+  else {
+    y.innerHTML = "Bad username/password";
+  }
+  var upperCaseLetters = /[A-Z]/g;
+  if(x.value.match(upperCaseLetters)) { 
+    continue
+  } 
+  else {
+    y.innerHTML = "Bad username/password";
+  }
+  var numbers = /[0-9]/g;
+  if(x.value.match(numbers)) { 
+    continue;
+  } 
+  else {
+    y.innerHTML = "Bad username/password";
+  }
+  if(x.value.length >= 8) {
+    continue;
+  } 
+  else {
+    y.innerHTML = "Bad username/password";
+  }
+}
+var x = document.getElementById("location");
+function getLocation() {
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(showPosition);
+	
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+  console.log("entered2");
+  x.innerHTML = "Latitude: " + position.coords.latitude + 
+  "<br>Longitude: " + position.coords.longitude; 
+}
+
+</script>
 </body>
 </html>
