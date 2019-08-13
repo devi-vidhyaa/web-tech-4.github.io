@@ -34,7 +34,9 @@
 <input type = "password" id = "password1" placeholder = "mypassword" style = "margin: 10px 15px;"><br><br>
 <div id = "valid"></div>
 <button id = "validate" onClick = "validation()" style = "margin-left: 100px;">Validate</button>
-<button id = "location" onClick = getLocation() style = "margin-left: 40%;">Get Location</button>
+<button onClick = getLocation() style = "margin-left: 40%;">Get Location</button>
+<p id ="location"></p>	
+	
 <script>
 function validation(){
   var x = document.getElementById(password1);
